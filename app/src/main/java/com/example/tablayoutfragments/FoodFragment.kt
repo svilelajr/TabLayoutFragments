@@ -9,10 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class FoodFragment(foods: List<Food>) : Fragment() {
-
-
-    val foods = foods
+class FoodFragment() : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +29,22 @@ class FoodFragment(foods: List<Food>) : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewFood)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = FoodAdapter(foods)
+        recyclerView.adapter = FoodAdapter(getFoods())
+
     }
+
+
+    private fun getFoods():List<Food>{
+
+        val foodList: MutableList<Food> = mutableListOf<Food>()
+
+        for (index in 0..50){
+            val food = Food("Nome $index","Descrição $index", "Valor $index")
+            foodList.add(food)
+        }
+        return foodList.toList()
+    }
+
+
 
 }

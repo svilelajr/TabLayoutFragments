@@ -6,7 +6,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class FoodAdapter(val foodList: List<Food>): RecyclerView.Adapter<FoodViewHolder>(){
+class FoodAdapter(foodList: List<Food>) : RecyclerView.Adapter<FoodViewHolder>(){
+
+    private var foodList = foodList
+
+        set(value) {
+        field = value
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.food_item, parent,false)
@@ -15,14 +22,16 @@ class FoodAdapter(val foodList: List<Food>): RecyclerView.Adapter<FoodViewHolder
 
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
 
+        val food = foodList[position]
+
         val name: TextView = holder.name
-        name.text = foodList[position].name
+        name.text = food.name
 
         val description: TextView = holder.description
-        description.text = foodList[position].description
+        description.text = food.description
 
         val price: TextView = holder.price
-        price.text = foodList[position].price
+        price.text = food.price
 
     }
 
@@ -30,6 +39,7 @@ class FoodAdapter(val foodList: List<Food>): RecyclerView.Adapter<FoodViewHolder
         return foodList.size
 
     }
+
 
 
 }

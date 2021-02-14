@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     private fun getFragments(): List<Fragment> {
 
         return listOf(
-            FoodFragment(getFoods()),
+            FoodFragment(),
             DrinksFragment(),
             DessertFragment()
         )
@@ -45,16 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun getFoods():List<Food>{
 
-        val foodList: MutableList<Food> = mutableListOf<Food>()
-
-        for (index in 0..50){
-            val food = Food("Nome $index","Descrição $index", "Valor $index")
-            foodList.add(food)
-        }
-        return foodList.toList()
-    }
 
 
 
